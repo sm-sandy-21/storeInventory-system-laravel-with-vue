@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class BrandController extends Controller
 {
@@ -108,6 +109,17 @@ class BrandController extends Controller
      toast('brands Delete successfuly','success');
 
         return redirect()->route('brands.index');
+    }
+
+    //Handle Ajax Request For Brands
+
+    public function getBrandsJson(){
+        $brands = Brand::all();
+
+        return response()->json([
+            'success' => true,
+            'data' => $brands
+        ],Response::HTTP_OK);
     }
     
 }

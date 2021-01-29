@@ -1921,6 +1921,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1932,15 +1939,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       formData: {
-        catagories_id: 0
+        catagories_id: 0,
+        brands_id: 0
       }
     };
   },
   mounted: function mounted() {
     _store_index__WEBPACK_IMPORTED_MODULE_0__.default.dispatch(_store_action_types__WEBPACK_IMPORTED_MODULE_1__.GET_CATAGORIES);
+    _store_index__WEBPACK_IMPORTED_MODULE_0__.default.dispatch(_store_action_types__WEBPACK_IMPORTED_MODULE_1__.GET_BRANDS);
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)({
-    'catagories': 'getCatagories'
+    'catagories': 'getCatagories',
+    'brands': 'getBrands'
   }))
 });
 
@@ -1975,12 +1985,12 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
 Vue.component('add-product', __webpack_require__(/*! ./components/productComponents/AddProduct.vue */ "./resources/js/components/productComponents/AddProduct.vue").default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 
 var app = new Vue({
   el: '#app',
@@ -2042,10 +2052,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GET_CATAGORIES": () => /* binding */ GET_CATAGORIES
+/* harmony export */   "GET_CATAGORIES": () => /* binding */ GET_CATAGORIES,
+/* harmony export */   "GET_BRANDS": () => /* binding */ GET_BRANDS
 /* harmony export */ });
 //catagories
-var GET_CATAGORIES = 'GET_CATAGORIES';
+var GET_CATAGORIES = 'GET_CATAGORIES'; //BRANDS
+
+var GET_BRANDS = 'GET_BRANDS';
 
 /***/ }),
 
@@ -2063,15 +2076,121 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_catagories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/catagories */ "./resources/js/store/modules/catagories/index.js");
+/* harmony import */ var _modules_brands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/brands */ "./resources/js/store/modules/brands/index.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vuex__WEBPACK_IMPORTED_MODULE_1__.default); //Modules
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_1__.default.Store({
   modules: {
-    catagories: _modules_catagories__WEBPACK_IMPORTED_MODULE_2__.default
+    catagories: _modules_catagories__WEBPACK_IMPORTED_MODULE_2__.default,
+    brands: _modules_brands__WEBPACK_IMPORTED_MODULE_3__.default
   }
+}));
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/brands/actions.js":
+/*!******************************************************!*\
+  !*** ./resources/js/store/modules/brands/actions.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _action_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../action-types */ "./resources/js/store/action-types.js");
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_defineProperty({}, _action_types__WEBPACK_IMPORTED_MODULE_0__.GET_BRANDS, function (_ref) {
+  var commit = _ref.commit;
+  axios__WEBPACK_IMPORTED_MODULE_2___default().get('/api/brands').then(function (res) {
+    //console.log(res.data)
+    if (res.data.success == true) {
+      commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.SET_BRANDS, res.data.data);
+    }
+  })["catch"](function (err) {
+    console.log(err.message);
+  });
+}));
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/brands/getters.js":
+/*!******************************************************!*\
+  !*** ./resources/js/store/modules/brands/getters.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getBrands: function getBrands(state) {
+    return state.brands;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/brands/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/brands/index.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./resources/js/store/modules/brands/actions.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getters */ "./resources/js/store/modules/brands/getters.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/modules/brands/mutations.js");
+
+
+
+var state = {
+  brands: {}
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  actions: _actions__WEBPACK_IMPORTED_MODULE_0__.default,
+  state: state,
+  getters: _getters__WEBPACK_IMPORTED_MODULE_1__.default,
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_2__.default
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/brands/mutations.js":
+/*!********************************************************!*\
+  !*** ./resources/js/store/modules/brands/mutations.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mutation-types */ "./resources/js/store/mutation-types.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_defineProperty({}, _mutation_types__WEBPACK_IMPORTED_MODULE_0__.SET_BRANDS, function (state, payload) {
+  state.brands = payload;
 }));
 
 /***/ }),
@@ -2188,10 +2307,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "SET_CATAGORIES": () => /* binding */ SET_CATAGORIES
+/* harmony export */   "SET_CATAGORIES": () => /* binding */ SET_CATAGORIES,
+/* harmony export */   "SET_BRANDS": () => /* binding */ SET_BRANDS
 /* harmony export */ });
 //catagories
-var SET_CATAGORIES = 'SET_CATAGORIES';
+var SET_CATAGORIES = 'SET_CATAGORIES'; //BRANDS
+
+var SET_BRANDS = 'SET_BRANDS';
 
 /***/ }),
 
@@ -6677,7 +6799,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nlabel {\n    margin-bottom: 11px;\n    margin-left: 15px;\n    background: 1px #44413e;\n    padding: 5px;\n    border-radius: 5px;\n    color: aqua;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* label {\n    margin-bottom: 11px;\n    margin-left: 15px;\n    background: 1px #44413e;\n    padding: 5px;\n    border-radius: 5px;\n    color: aqua;\n} */\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -45041,7 +45163,7 @@ var render = function() {
   return _c("div", { staticClass: "card-body" }, [
     _c("form", { attrs: { action: "", method: "POST" } }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("label", [_vm._v("Catagor Name")]),
+        _c("label", [_vm._v("Catagory Name")]),
         _vm._v(" "),
         _c(
           "select",
@@ -45078,6 +45200,50 @@ var render = function() {
               _vm._v(
                 "\n                              " +
                   _vm._s(item.catagoryName) +
+                  "\n                      "
+              )
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c("label", [_vm._v("Brands Name")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.formData.brands_id,
+                expression: "formData.brands_id"
+              }
+            ],
+            staticClass: "form-control mb-2 mr-sm-2",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.formData,
+                  "brands_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.brands, function(item, index) {
+            return _c("option", { key: index, domProps: { value: item.id } }, [
+              _vm._v(
+                "\n                              " +
+                  _vm._s(item.brandName) +
                   "\n                      "
               )
             ])

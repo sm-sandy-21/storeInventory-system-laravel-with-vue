@@ -29,22 +29,29 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
-
+  
     Route::resources([
         'catagories'=>CatagoryController::class
     ]);
     Route::get('catagory/delete/{id}', [CatagoryController::class, 'destroy'])->name('destroy');
     Route::get('/api/catagories', [CatagoryController::class, 'getCatagoriesJson']);
 
+
+
     Route::resources([
         'brands'=>BrandController::class
     ]);
     Route::get('brand/delete/{id}', [BrandController::class, 'destroy'])->name('destroy');
+    Route::get('/api/brands', [BrandController::class, 'getBrandsJson']);
+
+
 
     Route::resources([
         'sizes'=>SizeController::class
     ]);
     Route::get('size/delete/{id}', [SizeController::class, 'destroy'])->name('destroy');
+
+
 
     Route::resources([
         'products'=>ProductController::class

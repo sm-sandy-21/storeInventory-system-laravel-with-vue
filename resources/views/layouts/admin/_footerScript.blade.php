@@ -1,4 +1,4 @@
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
@@ -30,19 +30,19 @@
 <script src="{{ asset('assets/js/jquery.steps.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.timepicker.js') }}"></script>
-<script src="{{ asset('assets/js/dropzone.min.js') }}'></script>
+<script src="{{ asset('assets/js/dropzone.min.js') }}"></script>
 <script src="{{ asset('assets/js/uppy.min.js') }}"></script>
 <script src="{{ asset('assets/js/quill.min.js') }}"></script>
 
 
 <script src="{{ asset('assets/js/apps.js') }}"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script> --}}
 
 
 <script src="{{ asset('assets/js/config.js') }}"></script>
-<script src='{{ asset('assets/js/jquery.dataTables.min.js') }}'></script>
-<script src='{{ asset('assets/js/dataTables.bootstrap4.min.js') }}'></script>
+<script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}"></script>
 
 {{-- for sweet alert 2 --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -77,10 +77,10 @@
 
 
 </script>
-<script src="js/apps.js"></script>
+<script src="{{ asset('assets/js/apps.js') }}"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
-<script>
+{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script> --}}
+{{-- <script>
   window.dataLayer = window.dataLayer || [];
 
   function gtag()
@@ -89,7 +89,7 @@
   }
   gtag('js', new Date());
   gtag('config', 'UA-56159088-1');
-</script>
+</script> --}}
 <script>
   $('.select2').select2(
   {
@@ -293,9 +293,9 @@
     });
   }
 </script>
-<script src="js/apps.js"></script>
+<script src="{{ asset('assets/js/apps.js') }}"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
 
@@ -305,7 +305,7 @@
   }
   gtag('js', new Date());
   gtag('config', 'UA-56159088-1');
-</script>
+</script> --}}
 
 
  {{-- <link rel="stylesheet" type="text/css"

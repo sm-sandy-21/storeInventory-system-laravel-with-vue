@@ -2,10 +2,17 @@
   <div class="card-body">
           <form action="" method="POST">
               <div  class="form-group row">
-                   <label >Catagor Name</label>
+                   <label >Catagory Name</label>
                     <select class="form-control mb-2 mr-sm-2" v-model="formData.catagories_id" >
                         <option v-for="(item,index) in catagories" :key="index" :value="item.id">
                                 {{ item.catagoryName }}
+                        </option>
+                    </select>
+
+                    <label >Brands Name</label>
+                    <select class="form-control mb-2 mr-sm-2" v-model="formData.brands_id" >
+                        <option v-for="(item,index) in brands" :key="index" :value="item.id">
+                                {{ item.brandName }}
                         </option>
                     </select>
 
@@ -40,17 +47,21 @@ export default {
     data(){
         return{
             formData: {
-                catagories_id: 0
+                catagories_id: 0,
+                brands_id:0
             }
         }
     },
     mounted(){
         store.dispatch(actions.GET_CATAGORIES)
+        store.dispatch(actions.GET_BRANDS)
+
     },
      computed: {
     
     ...mapGetters({
-        'catagories' : 'getCatagories'
+        'catagories' : 'getCatagories',
+        'brands' : 'getBrands'
     })
   }
 
@@ -59,12 +70,12 @@ export default {
 </script>
 
 <style>
-label {
+/* label {
     margin-bottom: 11px;
     margin-left: 15px;
     background: 1px #44413e;
     padding: 5px;
     border-radius: 5px;
     color: aqua;
-}
+} */
 </style>

@@ -6,9 +6,11 @@ Vue.use(Vuex)
 
 //Modules
 import catagories from './modules/catagories'
+import brands from './modules/brands'
 
 export default new Vuex.Store({
     modules:{
-        catagories
+        catagories,
+        brands
     }
 })
